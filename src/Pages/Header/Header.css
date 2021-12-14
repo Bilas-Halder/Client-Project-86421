@@ -1,5 +1,5 @@
 .nav-shadow{
-  box-shadow: 0px 6px 22px -4px gray;
+  box-shadow: 0px 6px 22px -4px rgb(0, 0, 0);
   background-color: #3e3eff;
 }
 .logo-div{
@@ -33,7 +33,7 @@
 .nav-btn{
   position: relative;
   color: var(--primary) !important;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   font-weight: 500;
   transition: all 0.3s ease-in;
   border: none;
@@ -83,6 +83,19 @@
 .nav-btn-2::before,.nav-btn-2::after{
   background-color: blue;
 }
+
+.drop-icon, .drop-icon2{
+  color: white;
+  position: absolute;
+  top: 20%;
+  right: 0px;
+  z-index: -1;
+}
+
+.d-down:active .drop-icon{
+  transform: scale(1.5);
+}
+
 
 @keyframes left-right {
   0%{
