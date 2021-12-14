@@ -1,80 +1,85 @@
-import React from 'react';
-import { Container, Navbar,NavDropdown } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
-import img from '../../apartment 1.png'
+import React, { useEffect } from 'react';
+import './Header.css';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { HashLink } from 'react-router-hash-link';
+import { BsFillCaretDownFill } from 'react-icons/bs';
 import UseAuth from '../../Context/UseAuth';
-//import UseFirebase from '../../Hook/UseFirebase';
-import './Header.css'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
-    const {user,logOut}=UseAuth();
-   
+    
+const{user,logOut}=UseAuth();
+    useEffect(() => {
+        document.querySelectorAll('#navbarScrollingDropdown')[0]?.classList.add('nav-btn');
+        document.querySelectorAll('#navbarScrollingDropdown')[1]?.classList.add('nav-btn');
+        document.querySelectorAll('#navbarScrollingDropdown')[0]?.classList.add('text-center');
+        document.querySelectorAll('#navbarScrollingDropdown')[1]?.classList.add('text-center');
+    }, []);
+
+
     return (
-        <div>
-        <Navbar className="navbar " fixed="" mb-5>
+        <Navbar className="nav-shadow" fixed='top' expand="lg">
             <Container>
-                <img src={img} alt="" className="img-fluid icon"/>
-                <h5>Luxury</h5>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-center  justify-content-around">
-                <NavLink to="/home" className="ankor">Home</NavLink>
-                
+                <Navbar.Brand as={HashLink} to="/">
+                    <div className="d-flex align-items-center justify-content-center">
+                        <h4 className="brand-name">Survey</h4>
+                    </div>
+                </Navbar.Brand>
 
-            {user.email?<div>
-                <NavDropdown title="Workshop" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                    <NavLink to="/introduction" className="ankor">Introduction</NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <NavLink to="/questionworksetone" className="ankor">Question Set 1</NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <NavLink to="/questionworksettwo" className="ankor">Question Set 2</NavLink>
-                 </NavDropdown.Item>
-                    
-                <NavDropdown.Divider />
-                <NavDropdown.Item><NavLink to="/survey" className="ankor">Survey</NavLink> </NavDropdown.Item>
-           </NavDropdown>
-            </div>:''}
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                    <Nav.Link className="text-center nav-btn" as={HashLink} to="/">Home</Nav.Link>
+
+                {user.email?    <div className="d-flex position-relative                  justify-content-center d-down ankor"> 
+                        <NavDropdown title="Workshop" id="navbarScrollingDropdown">
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Introduction</Nav.Link>
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Question Set 1</Nav.Link>
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Question Set 2</Nav.Link>
+                            <NavDropdown.Divider />
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Survey</Nav.Link>
+                        </NavDropdown>
+
+                        <span className="drop-icon">
+                            <BsFillCaretDownFill />
+                        </span>
+
+                </div>:''}
 
 
+                    {user.email?<div className="d-flex position-relative justify-content-center d-down ankor">
+                        <NavDropdown title="Dashboard" id="navbarScrollingDropdown">
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Profile</Nav.Link>
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Question Set 1</Nav.Link>
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Question Set 2</Nav.Link>
+                            <NavDropdown.Divider />
+                            <Nav.Link className="text-center nav-btn nav-btn-2" as={HashLink} to="/">Survey</Nav.Link>
+                        </NavDropdown>
 
-           {user.email?<div><NavDropdown title="Dashboard" id="collasible-nav-dropdown">
-                <NavDropdown.Item>
-                    <NavLink to="/profile" className="ankor">Profile</NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <NavLink to="/questionsetonedash" className="ankor">Question Set 1</NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item>
-                    <NavLink to="/questionsettwodash" className="ankor">Question Set 2</NavLink>
-                 </NavDropdown.Item>
-                    
-                <NavDropdown.Divider />
-                <NavDropdown.Item><NavLink to="/dashsurvey" className="ankor">Survey</NavLink> </NavDropdown.Item>
-           </NavDropdown></div>: ''}
+                        <span className="drop-icon">
+                            <BsFillCaretDownFill />
+                        </span>
 
-                   
-                
+                    </div>:''}
+
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                 {user.email?
                    <div>
                         <Navbar.Text>
-                    <Link to="/login"><button className="btn" onClick={logOut}>LogOut</button></Link>
+                    <Link to="/login"><button className="btn ankor" onClick={logOut}>LogOut</button></Link>
                 </Navbar.Text>
                    </div>
                 :<div><Navbar.Text>
-                    <Link to="/login"><button className="btn">Login</button></Link>
+                    <Link to="/login"><button className="btn ankor">Login</button></Link>
                 </Navbar.Text>
                 <Navbar.Text>
-                    <Link to="/register"><button className="btn ms-2">Registration</button></Link>
+                    <Link to="/register"><button className="btn ms-2 ankor">Registration</button></Link>
                 </Navbar.Text></div>}
                 </Navbar.Collapse>
             </Container>
-           </Navbar>
-        </div>
+        </Navbar>
     );
 };
 
 export default Header;
+

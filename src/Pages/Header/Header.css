@@ -1,14 +1,116 @@
-.ankor {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  font-size: large;
-  font-family: Arial, Helvetica, sans-serif;
+.nav-shadow {
+  box-shadow: 0px 6px 22px -4px rgb(0, 0, 0);
+  background-color: #3e3eff;
 }
-.icon {
-  width: 40px;
+.logo-div {
+  width: 30px;
+  height: 40px;
+  margin-right: 10px;
 }
-.btn {
-  background-color: cornflowerblue;
+.logo-div img {
+  width: 100%;
+}
+.brand-name span {
+  color: var(--primary);
+}
+.brand-name {
+  position: relative;
+  padding-bottom: 7px;
+  padding-top: 7px;
+  color: var(--primary);
+}
+.brand-name::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 0%;
+  background-color: var(--primary);
+  transition: all 0.3s ease-in;
+  animation: left-right 3s ease-in-out infinite alternate-reverse;
+}
+
+.nav-btn {
+  position: relative;
+  color: var(--primary) !important;
+  padding: 0.5rem 1.2rem;
+  font-weight: 500;
+  transition: all 0.3s ease-in;
+  border: none;
+  background-color: transparent;
+}
+.nav-btn::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2px;
+  width: 0%;
+  border: none;
+  background-color: var(--primary);
+  transition: all 0.3s ease-in;
+}
+.nav-btn::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  border: none;
+  background-color: var(--primary);
+  transition: all 0.3s ease-in;
+}
+.nav-btn:hover {
+  color: var(--primary);
+}
+.nav-btn:hover::before {
+  width: 50%;
+}
+.nav-btn:hover::after {
+  width: 50%;
+}
+
+.nav-logout {
+  border: none;
+  color: #0d6efd;
+  background-color: #ffdead00;
+  padding: 0.5rem 1rem;
+}
+.nav-btn-2 {
+  color: black !important;
+}
+.nav-btn-2::before,
+.nav-btn-2::after {
+  background-color: blue;
+}
+
+.drop-icon,
+.drop-icon2 {
   color: white;
+  position: absolute;
+  top: 20%;
+  right: 0px;
+  z-index: -1;
+}
+
+.d-down:active .drop-icon {
+  transform: scale(1.5);
+}
+
+@keyframes left-right {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+    right: 0;
+  }
+}
+.ankor {
+  color: white !important;
 }
