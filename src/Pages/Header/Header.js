@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Navbar } from 'react-bootstrap';
+import { Container, Navbar,NavDropdown } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import img from '../../apartment 1.png'
 import './Header.css'
@@ -14,9 +14,40 @@ const Header = () => {
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-center  justify-content-around">
                 <NavLink to="/home" className="ankor">Home</NavLink>
-                <NavLink to="/introduction" className="ankor">Introduction</NavLink>
-                <NavLink to="/home" className="ankor">Home</NavLink>
-                <NavLink to="/home" className="ankor">Home</NavLink>
+                
+
+            <NavDropdown title="Workshop" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                    <NavLink to="/introduction" className="ankor">Introduction</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <NavLink to="/questionworksetone" className="ankor">Question Set 1</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <NavLink to="/questionworksettwo" className="ankor">Question Set 2</NavLink>
+                 </NavDropdown.Item>
+                    
+                <NavDropdown.Divider />
+                <NavDropdown.Item><NavLink to="/survey" className="ankor">Survey</NavLink> </NavDropdown.Item>
+           </NavDropdown>
+
+
+
+           <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
+                <NavDropdown.Item>
+                    <NavLink to="/profile" className="ankor">Profile</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <NavLink to="/questionsetonedash" className="ankor">Question Set 1</NavLink>
+                </NavDropdown.Item>
+                <NavDropdown.Item>
+                    <NavLink to="/questionsettwodash" className="ankor">Question Set 2</NavLink>
+                 </NavDropdown.Item>
+                    
+                <NavDropdown.Divider />
+                <NavDropdown.Item><NavLink to="/dashsurvey" className="ankor">Survey</NavLink> </NavDropdown.Item>
+           </NavDropdown>
+
                    
                 
                 </Navbar.Collapse>
