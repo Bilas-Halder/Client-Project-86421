@@ -13,11 +13,15 @@ import Profile from './Pages/Dashboard/Profile/Profile';
 import QuestionSetOneDash from './Pages/Dashboard/QuestionSetOneDash/QuestionSetOneDash';
 import QuestionSetTwoDash from './Pages/Dashboard/QuestionSetTwoDash/QuestionSetTwoDash';
 import DashSurvey from './Pages/Dashboard/DashSurvey/DashSurvey';
+import Login from './Pages/Login/Login';
+import Register from './Pages/Register/Register';
+import AuthProvider from './Context/AuthProvider';
 
 function App() {
   return (
     <div>
       
+      <AuthProvider>
       <BrowserRouter>
       <Header></Header>
       <Switch>
@@ -52,12 +56,23 @@ function App() {
         <Route path="/questionsetonedash">
         <QuestionSetOneDash></QuestionSetOneDash>
         </Route>
+
         <Route path="/questionsettwodash">
         <QuestionSetTwoDash></QuestionSetTwoDash>
         </Route>
+
         <Route path="/dashsurvey">
         <DashSurvey></DashSurvey>
         </Route>
+        <Route path="/login">
+       <Login></Login>
+        </Route>
+
+        <Route path="/register">
+        <Register></Register>
+        </Route>
+
+        
 
 
 
@@ -65,6 +80,7 @@ function App() {
       </Switch>
       </BrowserRouter>
 
+      </AuthProvider>
     </div>
   );
 }

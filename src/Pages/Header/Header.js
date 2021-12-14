@@ -2,9 +2,13 @@ import React from 'react';
 import { Container, Navbar,NavDropdown } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 import img from '../../apartment 1.png'
+import UseAuth from '../../Context/UseAuth';
+//import UseFirebase from '../../Hook/UseFirebase';
 import './Header.css'
 
 const Header = () => {
+    const {user,logOut}=UseAuth();
+   
     return (
         <div>
         <Navbar className="navbar " fixed="" mb-5>
@@ -16,7 +20,8 @@ const Header = () => {
                 <NavLink to="/home" className="ankor">Home</NavLink>
                 
 
-            <NavDropdown title="Workshop" id="collasible-nav-dropdown">
+            {user.email?<div>
+                <NavDropdown title="Workshop" id="collasible-nav-dropdown">
                 <NavDropdown.Item>
                     <NavLink to="/introduction" className="ankor">Introduction</NavLink>
                 </NavDropdown.Item>
@@ -30,10 +35,11 @@ const Header = () => {
                 <NavDropdown.Divider />
                 <NavDropdown.Item><NavLink to="/survey" className="ankor">Survey</NavLink> </NavDropdown.Item>
            </NavDropdown>
+            </div>:''}
 
 
 
-           <NavDropdown title="Dashboard" id="collasible-nav-dropdown">
+           {user.email?<div><NavDropdown title="Dashboard" id="collasible-nav-dropdown">
                 <NavDropdown.Item>
                     <NavLink to="/profile" className="ankor">Profile</NavLink>
                 </NavDropdown.Item>
@@ -46,18 +52,24 @@ const Header = () => {
                     
                 <NavDropdown.Divider />
                 <NavDropdown.Item><NavLink to="/dashsurvey" className="ankor">Survey</NavLink> </NavDropdown.Item>
-           </NavDropdown>
+           </NavDropdown></div>: ''}
 
                    
                 
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
-                <Navbar.Text>
+                {user.email?
+                   <div>
+                        <Navbar.Text>
+                    <Link to="/login"><button className="btn" onClick={logOut}>LogOut</button></Link>
+                </Navbar.Text>
+                   </div>
+                :<div><Navbar.Text>
                     <Link to="/login"><button className="btn">Login</button></Link>
                 </Navbar.Text>
                 <Navbar.Text>
-                    <Link to="/login"><button className="btn ms-2">Registration</button></Link>
-                </Navbar.Text>
+                    <Link to="/register"><button className="btn ms-2">Registration</button></Link>
+                </Navbar.Text></div>}
                 </Navbar.Collapse>
             </Container>
            </Navbar>
